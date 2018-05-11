@@ -725,11 +725,11 @@ namespace ExecProcedures
                 //Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
                 //   -1, "default", "default", "default", "?", "default", -1, -1);
 
-                
+                /*
                 Framegrabber.OpenFramegrabber("GigEVision", 0, 0, 0, 0, 0, 0, "default", -1, "default", -1, 
                     "false", "default", "003053231ec3_basler_aca250014gm", 0, -1);
                 Framegrabber.SetFramegrabberParam("AcquisitionMode","SingleFrame");
-                
+                */
 
                 //Framegrabber.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] FaceTime HD Camera (Build-in)", 0, -1);
 
@@ -941,7 +941,7 @@ namespace ExecProcedures
                     checkReset = false;
                 }
                 Framegrabber.GrabImageStart(-1);
-                //testImageAllShot(imgList.Count);
+                testImageAllShot(imgList.Count);
                 imgList.Add(Framegrabber.GrabImageAsync(-1));
                 HWindow window = (HWindow)windowsList[imgList.Count - 1];
 
@@ -1044,22 +1044,22 @@ namespace ExecProcedures
             if (i == 0)
             {
                 Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
-                  -1, "default", "default", "default", "C:/Users/Advantech/Desktop/CU-TNS_LightGuide/ExecProcedures/vs2005/Picture/Ngtest/NotGood_shot1.tif", "default", -1, -1);
+                  -1, "default", "default", "default", "../../Picture/Ngtest/NotGood_shot1.tif", "default", -1, -1);
             }
             else if (i == 1)
             {
                 Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
-                  -1, "default", "default", "default", "C:/Users/Advantech/Desktop/CU-TNS_LightGuide/ExecProcedures/vs2005/Picture/Ngtest/NotGood_shot2.tif", "default", -1, -1);
+                  -1, "default", "default", "default", "../../Picture/Ngtest/NotGood_shot2.tif", "default", -1, -1);
             }
             else if (i == 2)
             {
                 Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
-                  -1, "default", "default", "default", "C:/Users/Advantech/Desktop/CU-TNS_LightGuide/ExecProcedures/vs2005/Picture/Ngtest/NotGood_shot3.tif", "default", -1, -1);
+                  -1, "default", "default", "default", "../../Picture/Ngtest/NotGood_shot3.tif", "default", -1, -1);
             }
             else
             {
                 Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
-                  -1, "default", "default", "default", "C:/Users/Advantech/Desktop/CU-TNS_LightGuide/ExecProcedures/vs2005/Picture/Ngtest/NotGood_shot4.tif", "default", -1, -1);
+                  -1, "default", "default", "default", "../../Picture/Ngtest/NotGood_shot4.tif", "default", -1, -1);
             }
         }
 
