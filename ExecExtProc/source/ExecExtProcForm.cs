@@ -49,7 +49,7 @@ namespace ExecExtProc
         // private HDevOpMultiWindowImpl MyHDevOperatorImpl;
 
         // procedure call
-        private HDevProcedureCall ProcCall;
+        private HDevProcedureCall ProcCall, ProcChkLightCall;
         private HSmartWindowControl WindowControl;
         private TableLayoutPanel tableLayoutPanel1;
         private ComboBox shotComboBox;
@@ -59,6 +59,7 @@ namespace ExecExtProc
         private TableLayoutPanel tableLayoutPanel2;
         private Button Savebtn;
         private HFramegrabber Framegrabber;
+        private Button button1;
 
         // HALCON window
         private HWindow Window;
@@ -105,6 +106,7 @@ namespace ExecExtProc
             this.shotComboBox = new System.Windows.Forms.ComboBox();
             this.StopBtn = new System.Windows.Forms.Button();
             this.Savebtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -171,6 +173,7 @@ namespace ExecExtProc
             this.tableLayoutPanel2.Controls.Add(this.StopBtn, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.StartBtn, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.Savebtn, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 5);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(605, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -183,6 +186,7 @@ namespace ExecExtProc
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(144, 409);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
@@ -222,6 +226,16 @@ namespace ExecExtProc
             this.Savebtn.Text = "Save Master";
             this.Savebtn.UseVisualStyleBackColor = true;
             this.Savebtn.Click += new System.EventHandler(this.Savebtn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 253);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(138, 44);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Check Light";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ExecExtProcForm
             // 
@@ -274,6 +288,9 @@ namespace ExecExtProc
             {
                 HDevProcedure Procedure = new HDevProcedure("Calibrate");
                 ProcCall = new HDevProcedureCall(Procedure);
+
+                HDevProcedure ProcChkLight = new HDevProcedure("checkLight");
+                ProcChkLightCall = new HDevProcedureCall(ProcChkLight);
             }
             catch (HDevEngineException Ex)
             {
@@ -402,6 +419,52 @@ namespace ExecExtProc
         private void ExecExtProcForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Framegrabber.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            checkLight();
+        }
+
+        private void checkLight()
+        {
+            HRegion CirclesRegion;
+            int refLight,resultLight;
+            HImage chkLightImg = new HImage();
+            Framegrabber.GrabImageStart(-1);
+            chkLightImg = Framegrabber.GrabImageAsync(-1);
+
+            int shot;
+            shot = Int32.Parse(shotComboBox.SelectedItem + "");
+
+            // execute procedure
+            ProcCall.SetInputCtrlParamTuple("shot", shot);
+            ProcCall.Execute();
+            // get output parameters from procedure call
+            CirclesRegion = ProcCall.GetOutputIconicParamRegion("RegionOfInterest");
+            refLight = ProcCall.GetOutputCtrlParamTuple("refLight");
+
+            // execute procedure
+            ProcChkLightCall.SetInputIconicParamObject("RegionOfInterest", CirclesRegion);
+            ProcChkLightCall.SetInputIconicParamObject("ImageChk", chkLightImg);
+            ProcChkLightCall.SetInputCtrlParamTuple("refLight", refLight);
+            ProcChkLightCall.SetInputCtrlParamTuple("acceptDif", 1);
+            ProcCall.Execute();
+            // get output parameters from procedure call
+            resultLight = ProcChkLightCall.GetOutputCtrlParamTuple("result");
+            if(resultLight == -1)
+            {
+                MessageBox.Show("LOW LIGHT");
+            }
+            else if (resultLight == 0)
+            {
+                MessageBox.Show("LIGHT OK");
+            }
+            else
+            {
+                MessageBox.Show("HIGH LIGHT");
+            }
+
         }
     }
 }
