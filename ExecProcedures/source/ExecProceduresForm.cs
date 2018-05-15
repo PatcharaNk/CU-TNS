@@ -717,29 +717,12 @@ namespace ExecProcedures
             try
             {
                 Framegrabber = new HFramegrabber();
-                /*
-                Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
-                  -1, "default", "default", "default", "C:/Users/Admin/Desktop/CU-TNS_LightGuide/ExecProcedures/vs2005/Picture/Ngtest/NotGood_shot1.tif", "default", -1, -1);
-                */
-
-                //Framegrabber.OpenFramegrabber("File", 1, 1, 0, 0, 0, 0, "default",
-                //   -1, "default", "default", "default", "?", "default", -1, -1);
-
-                /*
+                
                 Framegrabber.OpenFramegrabber("GigEVision", 0, 0, 0, 0, 0, 0, "default", -1, "default", -1, 
                     "false", "default", "003053231ec3_basler_aca250014gm", 0, -1);
                 Framegrabber.SetFramegrabberParam("AcquisitionMode","SingleFrame");
-                */
-
-                //Framegrabber.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] FaceTime HD Camera (Build-in)", 0, -1);
-
-
-                //Framegrabber.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] USB2.0 HD UVC WebCam", 0, -1);
-
-                //HTuple height = Framegrabber.GetFramegrabberParam("Height");
-                //HTuple width = Framegrabber.GetFramegrabberParam("Width");
-
-                //Window.SetPart(0, 0, Convert.ToInt32(height.ToString()), Convert.ToInt32(width.ToString()));
+                
+                
                 testDi1 = new InstantDiCtrl();
                 testDo1 = new InstantDoCtrl();
                 testDo1.SelectedDevice = new DeviceInformation(0);
@@ -763,21 +746,11 @@ namespace ExecProcedures
             // load program and access procedure calls
             try
             {
-                //HDevProgram Program = new HDevProgram(ProgramPathString);
-
-                //HDevProcedure InitAcqProc = new HDevProcedure(Program, "init_acq");
-                //HDevProcedure inspctDefProc = new HDevProcedure("InspectDefect");
-                //HDevProcedure disCirProc = new HDevProcedure(Program, "DisplayCircle");
-                //InitAcqProcCall = new HDevProcedureCall(InitAcqProc);
-                //inspctDefProcCall = new HDevProcedureCall(inspctDefProc);
-                //disCirProcCall = new HDevProcedureCall(disCirProc);
 
                 HDevProcedure getRegionMasterProc = new HDevProcedure("get_region_master");
                 getRegionMasterProcCall = new HDevProcedureCall(getRegionMasterProc);
                 HDevProcedure inspectDefectProc = new HDevProcedure("inspect_defect");
                 inspectDefectProcCall = new HDevProcedureCall(inspectDefectProc);
-
-
 
             }
             catch (HDevEngineException Ex)
@@ -867,24 +840,16 @@ namespace ExecProcedures
             try
             {
                 // execute procedure
-                /*
-                inspctDefProcCall.SetInputIconicParamObject("ImageChk", Image);
-                inspctDefProcCall.SetInputCtrlParamTuple("shot", shot);
-                inspctDefProcCall.SetInputCtrlParamTuple("typeChk", "All");
-                inspctDefProcCall.Execute();
-                Image = inspctDefProcCall.GetOutputIconicParamImage("ImageChkRot");
-                */
+                
                 inspectDefectProcCall.SetInputIconicParamObject("ImageChk", Image);
                 inspectDefectProcCall.SetInputIconicParamObject("ImageRef", (HObject)imgRefList[shot - 1]);
                 inspectDefectProcCall.SetInputIconicParamObject("ROI_Rot", (HObject)regionsRotList[shot-1]);
-                inspectDefectProcCall.SetInputIconicParamObject("RegionsRef", (HObject)regionsRefList[shot - 1]);
+                inspectDefectProcCall.SetInputIconicParamObject("RegionsOfInterest", (HObject)regionsRefList[shot - 1]);
                 inspectDefectProcCall.Execute();
                 HImage imgChk = Image;
                 Image = inspectDefectProcCall.GetOutputIconicParamImage("ImageChkRot");
                 // drew circle
                 setOfcircle = inspectDefectProcCall.GetOutputIconicParamVector("setOfcircle");
-                //int typeNG = inspctDefProcCall.GetOutputCtrlParamTuple("typeNG");
-                //Console.WriteLine("TypeNG :" + typeNG);
                 Image.DispObj(window);
                 Console.WriteLine(setOfcircle.Length);
                 if (setOfcircle.Length > 0)
@@ -898,15 +863,8 @@ namespace ExecProcedures
                     //((HImage)imgWindows).WriteImage("tiff", 0, PathPJ + "\\Picture\\Ng\\NgImg" + (DateTime.Now).ToFileTime());
                     imgChk.WriteImage("tiff",0,PathPJ + "\\Picture\\Ng\\NgImg" + (DateTime.Now).ToFileTime());
                 }
-
-
-
-
+                            
                 window.SetPart(0, 0, -2, -2);
-
-                // get output parameters from procedure call
-                /*Framegrabber = 
-                    new HFramegrabber(InitAcqProcCall.GetOutputCtrlParamTuple("AcqHandle"));*/
             }
             catch (HDevEngineException Ex)
             {
@@ -941,7 +899,7 @@ namespace ExecProcedures
                     checkReset = false;
                 }
                 Framegrabber.GrabImageStart(-1);
-                testImageAllShot(imgList.Count);
+                //testImageAllShot(imgList.Count);
                 imgList.Add(Framegrabber.GrabImageAsync(-1));
                 HWindow window = (HWindow)windowsList[imgList.Count - 1];
 
@@ -1020,7 +978,6 @@ namespace ExecProcedures
         private void saveImage(ArrayList imgList, Boolean ngStatus)
         {
             PathPJ = PathPJ.Replace("bin\\Debug", "");
-            //Console.WriteLine((DateTime.Now).ToFileTime());
             String PathG = PathPJ + ("\\Picture\\pic_good");
             String PathNG = PathPJ + ("\\Picture\\pic_notgood");
             if(ngStatus)
@@ -1039,6 +996,28 @@ namespace ExecProcedures
             }
         }
 
+        private void getRegionsImgRef()
+        {
+            HImage imgRef = new HImage();
+            HRegion regionsRef = new HRegion();
+            HRegion regionsRot = new HRegion();
+            imgRefList = new ArrayList();
+            regionsRefList = new ArrayList();
+            regionsRotList = new ArrayList();
+            for (int i = 0; i < 4; i++)
+            {
+                getRegionMasterProcCall.SetInputCtrlParamTuple("shot", i + 1);
+                getRegionMasterProcCall.Execute();
+                imgRef = getRegionMasterProcCall.GetOutputIconicParamImage("ImageRef");
+                regionsRef = getRegionMasterProcCall.GetOutputIconicParamRegion("RegionsRef");
+                regionsRot = getRegionMasterProcCall.GetOutputIconicParamRegion("ROI_Rot");
+                imgRefList.Add(imgRef);
+                regionsRefList.Add(regionsRef);
+                regionsRotList.Add(regionsRot);
+            }
+        }
+
+        /*
         private void testImageAllShot(int i)
         {
             if (i == 0)
@@ -1062,27 +1041,9 @@ namespace ExecProcedures
                   -1, "default", "default", "default", "../../Picture/Ngtest/NotGood_shot4.tif", "default", -1, -1);
             }
         }
+        */
 
-        private void getRegionsImgRef()
-        {
-            HImage imgRef = new HImage();
-            HRegion regionsRef = new HRegion();
-            HRegion regionsRot = new HRegion();
-            imgRefList = new ArrayList();
-            regionsRefList = new ArrayList();
-            regionsRotList = new ArrayList();
-            for (int i = 0; i<4; i++)
-            {
-                getRegionMasterProcCall.SetInputCtrlParamTuple("shot", i + 1);
-                getRegionMasterProcCall.Execute();
-                imgRef = getRegionMasterProcCall.GetOutputIconicParamImage("ImageRef");
-                regionsRef = getRegionMasterProcCall.GetOutputIconicParamRegion("RegionsRef");
-                regionsRot = getRegionMasterProcCall.GetOutputIconicParamRegion("ROI_Rot");
-                imgRefList.Add(imgRef);
-                regionsRefList.Add(regionsRef);
-                regionsRotList.Add(regionsRot);
-            }
-        }
+
 
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
         {

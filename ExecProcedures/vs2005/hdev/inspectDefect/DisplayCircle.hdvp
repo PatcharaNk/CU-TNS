@@ -15,6 +15,7 @@
 <body>
 <l>setOfcircle := {}</l>
 <l>setOfSize := []</l>
+<l>setOfWidth := []</l>
 <l>union1 (DefectInChk, RegionUnion)</l>
 <l>closing_circle (RegionUnion, RegionClosing, 19.5)</l>
 <l>connection (RegionClosing, ConnectedRegions)</l>
