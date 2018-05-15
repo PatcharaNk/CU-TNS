@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<hdevelop file_version="1.1" halcon_version="13.0.1">
+<hdevelop file_version="1.1" halcon_version="13.0.1.1">
 <procedure name="get_region_master">
 <interface>
 <oo>
 <par name="ROI_Rot" base_type="iconic" dimension="0"/>
-<par name="RegionsRef" base_type="iconic" dimension="0"/>
+<par name="RegionsOfInterest" base_type="iconic" dimension="0"/>
 <par name="ImageRef" base_type="iconic" dimension="0"/>
 </oo>
 <ic>
@@ -31,7 +31,7 @@
 <c></c>
 <l>reduce_domain (ImageRef, ROI_Chk, ImageReducedRef)</l>
 <c></c>
-<l>getRegionInterest (ImageReducedRef, ROI_P, RegionsRef, RegionErosionFullRef)</l>
+<l>getRegionInterest (ImageReducedRef, ROI_P, RegionsOfInterest, RegionOfLightGuide)</l>
 <c></c>
 <l>return ()</l>
 </body>
@@ -39,7 +39,7 @@
 <parameters>
 <parameter id="ImageRef"/>
 <parameter id="ROI_Rot"/>
-<parameter id="RegionsRef"/>
+<parameter id="RegionsOfInterest"/>
 <parameter id="shot"/>
 </parameters>
 </docu>
