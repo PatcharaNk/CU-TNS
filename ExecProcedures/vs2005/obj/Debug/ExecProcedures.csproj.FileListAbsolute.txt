@@ -260,3 +260,16 @@ C:\Users\H3LEY\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.csp
 C:\Users\H3LEY\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.csproj.CoreCompileInputs.cache
 C:\Users\H3LEY\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.exe
 C:\Users\H3LEY\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.pdb
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\bin\Debug\ExecProcedures.exe
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\bin\Debug\ExecProcedures.pdb
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\bin\Debug\halcondotnet.dll
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\bin\Debug\hdevenginedotnet.dll
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\bin\Debug\halcondotnet.xml
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\bin\Debug\hdevenginedotnet.xml
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.csprojResolveAssemblyReference.cache
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.ExecProceduresForm.resources
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.Properties.Resources.resources
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.csproj.CoreCompileInputs.cache
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.exe
+C:\Users\Advantech\Desktop\CU_TNS\ExecProcedures\vs2005\obj\Debug\ExecProcedures.pdb

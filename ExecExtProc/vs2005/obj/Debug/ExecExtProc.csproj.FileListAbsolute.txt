@@ -51,3 +51,16 @@ C:\Users\Admin\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\ExecExtProc.csproj.Co
 C:\Users\Admin\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\ExecExtProc.csproj.CopyComplete
 C:\Users\Admin\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\Calibate.exe
 C:\Users\Admin\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\Calibate.pdb
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\bin\Debug\Calibate.exe
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\bin\Debug\halcondotnet.dll
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\bin\Debug\hdevenginedotnet.dll
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\bin\Debug\halcondotnet.xml
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\bin\Debug\hdevenginedotnet.xml
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\ExecExtProc.csprojResolveAssemblyReference.cache
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\ExecExtProc.ExecExtProcForm.resources
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\Calibate.Properties.Resources.resources
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\ExecExtProc.csproj.GenerateResource.Cache
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\ExecExtProc.csproj.CoreCompileInputs.cache
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\Calibate.exe
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\obj\Debug\Calibate.pdb
+C:\Users\Advantech\Desktop\CU_TNS\ExecExtProc\vs2005\bin\Debug\Calibate.pdb

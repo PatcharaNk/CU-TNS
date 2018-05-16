@@ -1,7 +1,7 @@
-// HDevEngine/.NET (C#) example for executing external 
+﻿// HDevEngine/.NET (C#) example for executing external 
 // HDevelop procedures
 //
-// � 2007-2017 MVTec Software GmbH
+// © 2007-2017 MVTec Software GmbH
 //
 // Purpose:
 // This example program shows how the classes HDevEngine, HDevProcedureCall,
@@ -229,6 +229,7 @@ namespace ExecExtProc
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(3, 253);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 44);
@@ -309,7 +310,7 @@ namespace ExecExtProc
         private void StartBtn_Click(object sender, System.EventArgs e)
         {
 
-
+            
             Framegrabber = new HFramegrabber();
             // read images and process them
             try
@@ -335,7 +336,7 @@ namespace ExecExtProc
                 //LightCheck = ProcCall.GetOutputIconicParamRegion("RegionOfInterest");
 
 
-
+                button1.Enabled = true;
                 StartBtn.Enabled = false;
                 shotComboBox.Enabled = false;
                 Savebtn.Enabled = true;
@@ -396,6 +397,7 @@ namespace ExecExtProc
             shotComboBox.Enabled = true;
             Savebtn.Enabled = false;
             Framegrabber.Dispose();
+            button1.Enabled = false;
         }
 
         private void LiveCam_thread()
@@ -429,7 +431,7 @@ namespace ExecExtProc
         private void checkLight()
         {
             HRegion CirclesRegion;
-            int refLight,resultLight;
+            Double refLight,resultLight;
             HImage chkLightImg = new HImage();
             Framegrabber.GrabImageStart(-1);
             chkLightImg = Framegrabber.GrabImageAsync(-1);
@@ -443,26 +445,27 @@ namespace ExecExtProc
             // get output parameters from procedure call
             CirclesRegion = ProcCall.GetOutputIconicParamRegion("RegionOfInterest");
             refLight = ProcCall.GetOutputCtrlParamTuple("refLight");
+            Console.WriteLine(refLight);
 
             // execute procedure
             ProcChkLightCall.SetInputIconicParamObject("RegionOfInterest", CirclesRegion);
             ProcChkLightCall.SetInputIconicParamObject("ImageChk", chkLightImg);
             ProcChkLightCall.SetInputCtrlParamTuple("refLight", refLight);
             ProcChkLightCall.SetInputCtrlParamTuple("acceptDif", 1);
-            ProcCall.Execute();
+            ProcChkLightCall.Execute();
             // get output parameters from procedure call
             resultLight = ProcChkLightCall.GetOutputCtrlParamTuple("result");
             if(resultLight == -1)
             {
-                MessageBox.Show("LOW LIGHT");
+                MessageBox.Show("แสงน้อยเกินไป กรุณาเพิ่มแสง");
             }
             else if (resultLight == 0)
             {
-                MessageBox.Show("LIGHT OK");
+                MessageBox.Show("ระดับแสงถูกต้องแล้ว");
             }
             else
             {
-                MessageBox.Show("HIGH LIGHT");
+                MessageBox.Show("แสงมากเกินไป กรุณาลดแสง");
             }
 
         }

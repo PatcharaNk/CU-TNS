@@ -861,7 +861,7 @@ namespace ExecProcedures
                     }
                     ngStatus = true;
                     //((HImage)imgWindows).WriteImage("tiff", 0, PathPJ + "\\Picture\\Ng\\NgImg" + (DateTime.Now).ToFileTime());
-                    imgChk.WriteImage("tiff",0,PathPJ + "\\Picture\\Ng\\NgImg" + (DateTime.Now).ToFileTime());
+                    imgChk.WriteImage("tiff",0, "..\\..\\Picture\\pic-ng\\NgImg" + (DateTime.Now).ToFileTime());
                 }
                             
                 window.SetPart(0, 0, -2, -2);
@@ -977,21 +977,19 @@ namespace ExecProcedures
         }
         private void saveImage(ArrayList imgList, Boolean ngStatus)
         {
-            PathPJ = PathPJ.Replace("bin\\Debug", "");
-            String PathG = PathPJ + ("\\Picture\\pic_good");
-            String PathNG = PathPJ + ("\\Picture\\pic_notgood");
+            
             if(ngStatus)
             {
                 for(int i = 0; i <= 3; i++)
                 {
-                    ((HImage)imgList[i]).WriteImage("tiff", 0, PathNG + "\\NgImg" + (DateTime.Now).ToFileTime());
+                    ((HImage)imgList[i]).WriteImage("tiff", 0, "..\\..\\Picture\\pic-ng\\NgImg" + (DateTime.Now).ToFileTime());
                 }
             }
             else
             {
                 for (int i = 0; i <= 3; i++)
                 {
-                    ((HImage)imgList[i]).WriteImage("tiff", 0, PathG + "\\GImg" + (DateTime.Now).ToFileTime());
+                    ((HImage)imgList[i]).WriteImage("tiff", 0, "..\\..\\Picture\\pic-good\\GImg" + (DateTime.Now).ToFileTime());
                 }
             }
         }
@@ -1009,7 +1007,7 @@ namespace ExecProcedures
                 getRegionMasterProcCall.SetInputCtrlParamTuple("shot", i + 1);
                 getRegionMasterProcCall.Execute();
                 imgRef = getRegionMasterProcCall.GetOutputIconicParamImage("ImageRef");
-                regionsRef = getRegionMasterProcCall.GetOutputIconicParamRegion("RegionsRef");
+                regionsRef = getRegionMasterProcCall.GetOutputIconicParamRegion("RegionsOfInterest");
                 regionsRot = getRegionMasterProcCall.GetOutputIconicParamRegion("ROI_Rot");
                 imgRefList.Add(imgRef);
                 regionsRefList.Add(regionsRef);
