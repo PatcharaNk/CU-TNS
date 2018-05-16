@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<hdevelop file_version="1.1" halcon_version="13.0.1.1">
+<hdevelop file_version="1.1" halcon_version="13.0.1">
 <procedure name="getROI">
 <interface>
 <oo>
@@ -31,7 +31,7 @@
 <l>    gen_rectangle2 (ROI_Chk, 687.545, 1430.2, rad(140.894), 1604.48, 500.692)</l>
 <c>    </c>
 <c>    * create line that limit scope of area that we want to check</c>
-<l>    gen_rectangle2 (ROI_P, 132.854, 706.678, rad(-128.005), 173, 28.5862)</l>
+<l>    gen_rectangle2 (ROI_P, 162.488, 712.596, rad(-127.833), 202.613, 34.7947)</l>
 <c>    </c>
 <c></c>
 <l>elseif(shot == 3)</l>

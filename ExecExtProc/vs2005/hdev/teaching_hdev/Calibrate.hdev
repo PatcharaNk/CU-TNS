@@ -158,7 +158,7 @@
 <c>    </c>
 <l>    erosion_circle (SelectedRegions, RegionErosionFull, 4.5)</l>
 <l>    opening_circle (RegionErosionFull, RegionOpening, 10)</l>
-<l>    dilation_circle (RegionOpening, RegionOfInterest, 25.5)</l>
+<l>    dilation_circle (RegionOpening, RegionOfInterest, 15.5)</l>
 <c>* end getRegion</c>
 <c></c>
 <c>* get intensity Light</c>

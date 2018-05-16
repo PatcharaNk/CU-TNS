@@ -103,7 +103,7 @@
 <c>    </c>
 <l>    erosion_circle (SelectedRegions, RegionOfLightGuide, 4.5)</l>
 <l>    opening_circle (RegionOfLightGuide, RegionOpening, 10)</l>
-<l>    dilation_circle (RegionOpening, RegionOfInterest, 25.5)</l>
+<l>    dilation_circle (RegionOpening, RegionOfInterest, 15.5)</l>
 <c>* end getRegion</c>
 <c></c>
 <c>* get reference light value</c>
